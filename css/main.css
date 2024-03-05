@@ -544,6 +544,15 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -564,6 +573,14 @@ video {
   margin-top: 5rem;
 }
 
+.mb-\[5px\] {
+  margin-bottom: 5px;
+}
+
+.mt-\[5px\] {
+  margin-top: 5px;
+}
+
 .flex {
   display: flex;
 }
@@ -580,8 +597,65 @@ video {
   height: 300px;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-\[\] {
+  height: ;
+}
+
+.h-\[1\] {
+  height: 1;
+}
+
+.h-\[195pxs\] {
+  height: 195pxs;
+}
+
+.h-\[20px\] {
+  height: 20px;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-\[10px\] {
+  height: 10px;
+}
+
+.h-\[200\] {
+  height: 200;
+}
+
+.h-\[210px\] {
+  height: 210px;
+}
+
+.max-h-28 {
+  max-height: 7rem;
+}
+
+.max-h-10 {
+  max-height: 2.5rem;
+}
+
 .w-1\/6 {
   width: 16.666667%;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
 }
 
 .w-\[50px\] {
@@ -592,8 +666,32 @@ video {
   width: 713px;
 }
 
-.w-auto {
-  width: auto;
+.w-full {
+  width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-4\/5 {
+  width: 80%;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
+}
+
+.w-\[95\] {
+  width: 95;
+}
+
+.w-\[95\%\] {
+  width: 95%;
+}
+
+.w-\[80\%\] {
+  width: 80%;
 }
 
 .min-w-\[55px\] {
@@ -612,6 +710,22 @@ video {
   flex-grow: 0;
 }
 
+.scale-50 {
+  --tw-scale-x: .5;
+  --tw-scale-y: .5;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-scale-50 {
+  --tw-scale-x: -.5;
+  --tw-scale-y: -.5;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -624,6 +738,10 @@ video {
   justify-content: flex-end;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
 }
@@ -632,10 +750,56 @@ video {
   justify-content: space-around;
 }
 
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
+.gap-\[\] {
+  gap: ;
+}
+
+.gap-\[50\%\] {
+  gap: 50%;
+}
+
+.gap-\[20\%\] {
+  gap: 20%;
+}
+
+.gap-\[0\%\] {
+  gap: 0%;
+}
+
+.gap-\[10\%\] {
+  gap: 10%;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .space-x-5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.25rem * var(--tw-space-x-reverse));
   margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .self-center {
@@ -694,6 +858,14 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-60 {
+  opacity: 0.6;
 }
 
 #nav{
