@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %} <link rel="stylesheet" href="{% static 'message.css' %}">{% endblock %}
+{% block title %}Conversation{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex  justify-center p-4 bg-fblue">
+    <div class=" w-[80%] lg:w-[45%]">
+        <h1 class="mb-6 text-3xl text-center font-semibold">Conversation</h1>
+        <div class="space-y-3 w-full">
+            {% for message in conversation.messages.all %}
+            {% if message.created_by == request.user %}
+            <div class="flex justify-end w-full">
+                <div class=" p-2 flex bg-green-300 rounded-xl w-fit ">
+                    <div>
+                        <p class="mb-2"><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+                        <p>{{ message.content }}</p>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class=" p-2 flex bg-orange-300 rounded-xl w-fit">
+                <div>
+                    <p class="mb-2"><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+                    <p>{{ message.content }}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <form method="post" action="."  class="  bg-white shadow-lg rounded-xl mt-3 px-8 pt-6 pb-8 mb-4 ">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="mt-6  px-8 text-lg bg-orange-400 hover:bg-orange-500 rounded-xl text-white">Send</button>  
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Market</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+
+<body class="min-w-[475px]">
+    <section id="hero" class="h-full relative" style="background-image: url(static/assets/download-bg.jpg); background-size: cover;">
+        <div class="flex flex-col justify-start relative md:justify-between" id="home" style="height: 100vh; ">
+            <nav class="flex justify-between pt-2 backdrop-blur-sm">
+                 <a href="{% url 'core:index' %}" class="flex items-center">
+                     <img src="{% static 'assets/logo.png' %}" width="55px" alt="logo">
+                     <p class=" hidden text-white med-small:block">CAMPUS<br>MARKET</p>
+                 </a>
+                 <br>
+                 <form method="get" action="{% url 'item:items' %}" class="flex bg-grey_my w-[300px] medium:w-[600px] rounded-3xl">
+                     <div class="text-4xl self-center">🔍</div>
+                     <input name="query" value="{{query}}" type="text" class="bg-grey_my rounded-3xl flex-grow" placeholder="Search...." />
+                     <button class="bg-orange-400 hover:bg-orange-500 text-white font-bold w-[64px] rounded-l-none rounded-r-3xl">Search</button>
+                 </form>
+                 <div class="flex items-center mr-2 space-x-3">
+                     <a href="{% url 'item:new' %}"  class="hidden md:block hover:border-b-4 border-b-orange-600 text-center text-white font-semibold">Sell Item</a>
+                     <a href="{% url 'item:items' %}" class="hidden md:block hover:border-b-4 border-b-orange-600 tex-center text-white font-semibold">Browse</a>
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'conversation:inbox' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block " >Inbox</a>
+                    <a href="{% url 'dashboard:index' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block ">Dashboard</a>
+                    {% else %}
+                    <a href="{% url 'core:signup' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block ">Sign up</a>
+                    <a href="{% url 'core:login' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block ">Login</a>
+                    {% endif %}
+                 </div>                
+                <button id="menu-btn" class="block hamburger md:hidden focus:outline-none mr-2">
+                    <img src="{% static 'assets/icon-hamburger.svg' %}" width="35px" id="ham-ico"/>
+                </button>
+            </nav>
+            <div class="md:hidden">
+                <div id="menu" class="absolute rounded-3xl  flex-col items-center hidden self-end hidden-py-8 mt-2 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md pt-4 pb-4">
+                  <a href="{% url 'item:new' %}" class="w-full text-center  hover:bg-orange-300">Sell Item</a>
+                  <a href="{% url 'item:items' %}" class="w-full text-center  hover:bg-orange-300">Browse</a>
+                  <a href="{% url 'conversation:inbox' %}" class="w-full text-center  hover:bg-orange-300">Inbox</a>
+                  <a href="{% url 'dashboard:index' %}" class="w-full text-center  hover:bg-orange-300">Dashboard</a>
+                  <a href="#" class="w-full text-center  hover:bg-orange-300">Community</a>
+                </div>
+            </div>
+            <div id="hero_content" class="mx-auto my-auto">
+                <div class="ml-10 max-w-[700px] mx-auto ">
+                    <p class="font-sans font-extrabold text-white text-6xl leading-tight mb-8 ">Find Everything for<br>Your Campus Life 🛒</p>
+                    <p class="text-white text-lg mb-8 ">Dive into a galaxy of academic essentials with CampusMarket. Find everything from laptops to study guides, <br/>making your campus life smoother and more efficient.</p>
+                    <a href="{% url 'item:items' %}"  class="bg-orange-500 hover:bg-orange-600 text-white py-3 px-8 rounded-full text-lg font-semibold transition duration-300 ease-in-out shadow-lg">Get Started</a>
+                </div>
+            </div> 
+            <div class="hidden space-x-5  items-center justify-end mr-3 medium:flex">
+                <div id="box-1" class="w-1/6 h-40  rounded-xl p-4  relative box-highlight" style="background-image:url(static/assets/hero-bg.png); background-size: cover; min-width: 247px" >
+                     <img src="{% static 'assets/box-1.png' %}" class="absolute bottom-0" id="box_1">
+                </div>
+                <div id="box-2" class="w-1/6 h-40  rounded-xl p-4  relative" style="background-image: url(static/assets/hero-bg2.png); background-size: cover; min-width: 247px">
+                    <img src="" class="absolute bottom-0 " id="box_2">
+                </div>
+                <div id="box-3" class="w-1/6 h-40  rounded-xl p-4  relative" style="background-image: url(static/assets/hero-bg3.png); background-size: cover; min-width: 247px">
+                    <img src="" class="absolute  bottom-0 " id="box_3" style="overflow-x: hidden;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="flex flex-wrap items-center justify-around" style="background-image: url('static/assets/Bg2.jpg'); background-size: cover;">
+        <img src="{% static 'assets/box-4.gif' %}" alt="" class="mx-auto md:mr-0 md:ml-4">
+        <div class="ml-4 md:ml-0 ">
+            <div class=" bg-orange-50 flex flex-col mt-5 mb-20 mx-auto rounded-3xl ">
+                <h2 class="font-extrabold text-xl p-2 text-center text-black border-b-4 border-gray-400 border-dashed"><span class="text-2xl">📋</span>Categories</h2>
+                <div class="grid grid-cols-2 space-x-3 space-y-1">
+                    {% for category in categories %}
+                    <a  href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}" class="flex flex-col items-center image-container p-5">
+                        <img src="{{ category.image.url }}" alt="Laptop Image 1" class="h-[200px] w-auto">
+                        <div class="label">{{ category.name }}</div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section >
+        <h2 class="font-extrabold text-xl ml-12 pt-5 text-black mb-4"><span class="text-3xl">🆕</span>Recently Added</h2>
+        <div class="bg-orange-50 w-full md:w-[80%] mt-5 mb-20 mx-auto rounded-3xl flex flex-wrap justify-around gap-2">
+            {% for item in items %}
+            <a href="{% url 'item:detail' item.id %}" class="flex flex-col items-center image-container">
+                <img src="{{ item.image.url }}" alt="Laptop Image 1" class="h-[200px] w-auto">
+                <div class="label">{{ item.name }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    
+   <section style="background-image: url('static/assets/Bg.jpg'); background-size: cover;">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h2 class="text-4xl font-semibold text-orange-700 mb-4">Join the Campus Market</h2>
+            <p class="text-gray-700 text-lg mb-8">A platform for students to buy and sell with ease</p>
+            <a href="{% url 'item:items' %}" class="bg-orange-500 hover:bg-orange-600 text-white py-3 px-8 rounded-full text-lg font-semibold transition duration-300 ease-in-out shadow-lg">Get Started</a>
+        </div>
+        
+        <div class="mt-12">
+            <h2 class="text-3xl font-semibold text-gray-900 text-center mb-8 ">Why Choose Us?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300">
+                    <img src="{% static 'assets/shield-check.svg' %}" alt="Safe Transactions" class="w-20 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Safe Transactions</h3>
+                    <p class="text-gray-700">Secure payments within the campus community</p>
+                </div>
+                <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300">
+                    <img src="{% static 'assets/community.svg' %}" alt="Community Trust" class="w-20 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Community Trust</h3>
+                    <p class="text-gray-700">Buy and sell with fellow students you trust</p>
+                </div>
+                <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300">
+                    <img src="{% static 'assets/list-select.svg' %}" alt="Easy Listings" class="w-20 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Easy Listings</h3>
+                    <p class="text-gray-700">List your items quickly with our simple process</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-[160px]">
+    </div>
+</section>
+
+
+    <footer class="footer bg-footer">
+        <div class="flex flex-row justify-around p-10">
+            <div class="logo">
+                <img src="{% static 'assets/logo.png' %}" class="h-16 m-2 mb-4" alt="">
+                <h2 class="text-footer_col text-2xl  font-serif">Campus Market</h2>
+            </div>
+            <div class="middle text-footer_col flex flex-col justify-around space-x-0">
+                <a href = "{% url 'core:index' %}" class="float-left">Home</a>
+                <a href = "{% url 'item:items' %}" class="float-left">Items</a>
+                <a href = "{% url 'item:new' %}" class="float-left ">Become a Seller</a>   
+            </div>
+            <div class="end flex flex-col text-footer_col justify-around">
+                <a href = "#" class="float-left">About Us</a>
+                <a href="#" class="float-left">Feedback</a>
+                <a href="#" class="float-left">Contact: </a>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
+

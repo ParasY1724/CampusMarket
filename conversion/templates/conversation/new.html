@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %} <link rel="stylesheet" href="{% static 'forms.css' %}">{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center p-4 bg-fblue">
+    <div class=" w-[80%] lg:w-[45%]">
+        <h1 class="mb-6 text-3xl text-center font-semibold">
+            New Conversation<br> <span class="text-2xl text-center" style="font-family: 'Times New Roman', Times, serif;">to : {{to_user}}</span> 
+        </h1>
+     
+        <form method="post" action="." enctype="multipart/form-data" class="bg-white shadow-lg rounded-xl px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            <div class="space-y-4">
+                {{ form.as_p }}
+            </div>
+            {% if form.errors or form.non_field_errors %}
+            <div class="mt-6 py-4 px-8 text-lg bg-red-100 rounded-xl text-red-700">
+                {% for field in form %}
+                {{ field.errors }}
+                {% endfor %}
+                
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            <button type="submit" class="mt-6 py-4 px-8 text-lg bg-orange-400 hover:bg-orange-500 rounded-xl text-white">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

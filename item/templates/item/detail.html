@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'detail.css' %}">
+<style>
+.tagtext::-webkit-scrollbar {
+  display: none; 
+}
+</style>
+{% endblock %}
+{% block title %}{{ item.name }}{% endblock %}
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-6  m-4">
+    <div class="product lg:col-span-2 bg-bgcolor">
+        <div class="allImages">
+            <div class="m-3 flex flex-col">
+                <div class="flex justify-center">
+                    <img class="w-[400px] h-[400px] image" src="{{ item.image.url }}" alt="">
+                </div>
+
+                <div class="flex justify-center space-x-3 p-3">
+                    <img class="h-14 smimg" id="img1" src="{{ item.image.url }}" alt="">
+                    <img class="h-14 smimg" id="img2" src="{{ item.image2.url }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ml-5 mt-10 productInfo lg:col-span-4">
+        <h1 class="text-4xl mb-1 font-medium text-center font-serif">{{ item.name }}</h1>
+        <hr>
+        {% if item.description %}
+        <p class="font-medium text-lg text-gray-700">Description:</p>
+        <p class=" text-lg font-normal">   {{ item.description }}</p>
+        {% endif %}
+        <br>
+        <p class="font-medium text-lg text-gray-700">Seller: <span class="text-lg font-normal">{{ item.created_by.username }}</span></p>
+        <p class="font-medium text-lg text-gray-700">College: <span class="text-lg font-normal">{{ item.college }}</span></p>
+
+        <br>
+        <p class="font-medium text-lg text-gray-700">Price: <span class="text-xl font-normal">&#8377; {{ item.price }}</span></p>
+        <hr>
+        {% if request.user == item.created_by %}
+        <div class="mt-6 p-6 bg-white rounded-xl">
+            <p>This is your item!</p>
+            <div class="flex justify-center m-2 mb-10">
+                <a href="{% url 'item:edit' item.id %}" class="ml-2 px-6 py-2 rounded-full focus:outline-none bg-green-400 ">Edit</a>
+                <a href="{% url 'item:delete' item.id %}" class="ml-2 px-6 py-2 rounded-full focus:outline-none bg-orange-500 ">Delete</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="flex justify-center m-2 mb-10">
+            <a href="{% url 'conversation:new' item.id %}" class="ml-2 px-6 py-2 rounded-full focus:outline-none bg-green-400 ">Contact Seller</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% if related_items %}
+<h2 class="font-extrabold text-xl ml-12 pt-5 text-black mb-4">Related Items</h2>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-4 m-2 bg-fblue p-2 rounded-lg ">
+    {% for item in related_items %}
+    <a href="{% url 'item:detail' item.id %}" class="flex  lg:flex-col " style="max-width: 150px; ">
+        <img src="{{ item.image.url }}" class="w-full hover:scale-105" alt="" style="width: 150px; height: 150px;">
+        <div class="flex flex-col  top-1/2 ">
+            <h2 class="font-bold tracking-wider text-center">{{ item.name }}</h2>
+            <h3 class="font-semibold text-center pb-1">&#8377;{{ item.price }}</h3>
+        </div>
+    </a>
+    {% endfor %}
+{% endif %}
+</div>
+{% if data %}
+<h2 class="font-extrabold text-xl ml-12 pt-5 text-black mb-4">Online Results</h2>
+<div style="height:600px; overflow: scroll;">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 m-2 bg-fblue p-2 rounded-lg">
+        {% for item in data  %}
+        <a href="{{ item.url }}" class="flex lg:flex-col" style="max-width: 150px;">
+            <img src="{{ item.img }}" class="w-full hover:scale-105" alt="" style="width: 150px; height: 150px;">
+            <div class="flex flex-col top-1/2">
+                <h2 class="tagtext font-bold tracking-wider text-center" style="max-height:85px; overflow:scroll;">{{ item.title }}</h2>
+                <h3 class="font-semibold text-center pb-1">{{ item.price }}</h3>
+                <h3 class="font-semibold text-center pb-1">{{ item.provider }}</h3>            
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/individual.js' %}"></script>
+{% endblock %}

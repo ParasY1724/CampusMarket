@@ -1,0 +1,69 @@
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block css %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>    
+        <nav class="flex justify-between pt-2 pb-2 bg-blue backdrop-blur-sm">
+            <a href="{% url 'core:index' %}" class="flex items-center mr-2">
+                <img src="{% static 'assets/logo.png' %}" width="55px" alt="logo">
+                <p class=" hidden text-white med-small:block">CAMPUS<br>MARKET</p>
+            </a>
+            <br>
+            <form method="get" action="{% url 'item:items' %}" class="flex bg-grey_my w-[300px] medium:w-[600px] rounded-3xl">
+                <div class="text-4xl self-center">🔍</div>
+                <input name="query" value="{{query}}" type="text" class="bg-grey_my rounded-3xl flex-grow" placeholder="Search...." />
+                <button class="bg-orange-400 hover:bg-orange-500 text-white font-bold w-[64px] rounded-l-none rounded-r-3xl">Search</button>
+            </form>
+            <div class="flex items-center mr-2 space-x-3">
+                <a href="{% url 'item:new' %}"  class="hidden md:block hover:border-b-4 border-b-orange-600 text-center text-white font-semibold">Sell Item</a>
+                <a href="{% url 'item:items' %}" class="hidden md:block hover:border-b-4 border-b-orange-600 tex-center text-white font-semibold">Browse</a>
+               {% if request.user.is_authenticated %}
+               <a href="{% url 'conversation:inbox' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block " >Inbox</a>
+               <a href="{% url 'dashboard:index' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block ">Dashboard</a>
+               {% else %}
+               <a href="{% url 'core:signup' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block ">Sign up</a>
+               <a href="{% url 'core:login' %}" class=" hidden bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-full px-4 py-2 md:block ">Login</a>
+               {% endif %}
+            </div>             
+           <button id="menu-btn" class="block hamburger md:hidden focus:outline-none mr-2">
+               <img src="{% static 'assets/icon-hamburger.svg' %}" width="35px" id="ham-ico"/>
+           </button>
+       </nav>
+       <div class="md:hidden">
+           <div id="menu" class="absolute rounded-3xl  flex-col items-center hidden self-end hidden-py-8 mt-2 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md pt-4 pb-4">
+             <a href="{% url 'item:new' %}" class="w-full text-center  hover:bg-orange-300">Sell Item</a>
+             <a href="{% url 'item:items' %}" class="w-full text-center  hover:bg-orange-300">Browse</a>
+             <a href="{% url 'conversation:inbox' %}" class="w-full text-center  hover:bg-orange-300">Inbox</a>
+             <a href="{% url 'dashboard:index' %}" class="w-full text-center  hover:bg-orange-300">Dashboard</a>
+             <a href="#" class="w-full text-center  hover:bg-orange-300">Community</a>
+           </div>
+       </div>
+        {% block content %}
+        {% endblock %}
+        <footer class="footer bg-footer">
+            <div class="flex flex-row justify-around p-10">
+                <div class="logo">
+                    <img src="{% static 'assets/logo.png' %}" class="h-16 m-2 mb-4" alt="">
+                    <h2 class="text-footer_col text-2xl ml-4 font-serif">Campus Market</h2>
+                </div>
+                <div class="middle text-footer_col flex flex-col justify-around space-x-0">
+                    <a href = "{% url 'core:index' %}" class="float-left">Home</a>
+                    <a href = "{% url 'item:items' %}" class="float-left">Items</a>
+                    <a href = "{% url 'item:new' %}" class="float-left ">Become a Seller</a>
+                </div>
+                <div class="end flex flex-col text-footer_col justify-around">
+                    <a href = "#" class="float-left">About Us</a>
+                    <a href="#" class="float-left">Feedback</a>
+                    <a href="" class="float-left">Contact: </a>
+                </div>
+            </div>
+        </footer>
+        <script src="{% static 'js/base.js' %}"></script>
+        {% block js %}{% endblock %}
+    </body>
+    </html>
