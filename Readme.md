@@ -105,7 +105,3 @@ Contributions are welcome! If you want to contribute to CampusMarket, please fol
 1. **Fork the repository**.
 2. **Create a new branch** for your changes.
 3. **Submit a pull request** with a clear explanation of your changes.
-
-## License
-CampusMarket is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-```
