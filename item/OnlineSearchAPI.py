@@ -4,6 +4,7 @@ def get_online_data(query):
     url = "https://real-time-product-search.p.rapidapi.com/search"
     querystring = {"q":query,"country":"in","language":"en","page":"1"}
     headers = {
+        
         "X-RapidAPI-Key": "<YOUR_API_KEY>",
         "X-RapidAPI-Host": "real-time-product-search.p.rapidapi.com"
     }
