@@ -5,6 +5,7 @@ import sys
 
 
 def main():
+    # IMP
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CampusMarket.settings')
     try:
